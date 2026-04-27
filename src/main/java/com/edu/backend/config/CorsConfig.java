@@ -15,11 +15,13 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
+        String frontendUrl = System.getenv("FRONTEND_URL");
+        if (frontendUrl == null || frontendUrl.isEmpty()) {
+            frontendUrl = "http://localhost:5173"; // Fallback for local development
+        }
         config.setAllowedOrigins(List.of(
-            "http://localhost:3000",
             "http://localhost:5173",
-            "http://127.0.0.1:3000",
-            "http://127.0.0.1:5173"
+            frontendUrl
         ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(Arrays.asList("*"));

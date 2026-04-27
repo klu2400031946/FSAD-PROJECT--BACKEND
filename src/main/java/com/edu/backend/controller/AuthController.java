@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173"})
 public class AuthController {
 
     private final UserRepository userRepository;
